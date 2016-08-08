@@ -1,0 +1,24 @@
+<ion-view>
+    <ion-nav-title>{{sub_catagery_list.name | uppercase}}</ion-nav-title>
+    <ion-nav-bar class="header_color">
+        <ion-nav-back-button class="button-clear">
+            <i class="icon ion-ios-arrow-back"></i>
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content id="restaurant">
+        <ion-slide-box id="restaurant-slide-box" show-pager="false" active-slide="0">
+            <ion-slide style="padding-top: 0px !important;">
+                <img ng-if="sub_catagery_list.image != null" ng-src="{{sub_catagery_list.image}}" width="100%;">
+                <img ng-if="sub_catagery_list.image == null" src="../img/noimagefound.png" width="100%;">
+            </ion-slide>
+        </ion-slide-box>
+        <ion-list>
+            <ion-item ng-repeat="sub_catagery in sub_catagery_list.subCategory.data" ng-click="getPackages(sub_catagery.id)">
+                <b>{{sub_catagery.name}}</b>
+            </ion-item>
+        </ion-list>
+        <div ng-show="sub_catagery_list.subCategory.data.length == '0'" class="text-center">
+            Sorry,no sub category found!
+        </div>
+    </ion-content>
+</ion-view>

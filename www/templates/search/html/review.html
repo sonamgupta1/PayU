@@ -1,0 +1,47 @@
+<ion-modal-view>
+    <ion-header-bar>
+
+        <div class="row">
+            <div class="col-50">
+            </div>
+
+            <div class="col-50 text-right" ng-click="closeReviewModel()">
+                <i  class="black-c ion-close-round f-20 l-h-25" aria-hidden="true"></i>
+
+            </div>
+        </div>
+
+
+
+        <h1 class="title">
+            <p>REVIEWS:{{package.reviews.data.length}}</p>
+        </h1>
+    </ion-header-bar>
+    <ion-content class="bg-c">
+        <div class="card p-10" ng-show="package.reviews.data.length == '0'">
+          <p class="text-center"> Sorry, No reviews found for this package.</p>
+
+        </div>
+        <div class="card p-20 m-5" ng-show="package.reviews.data.length" ng-repeat="review in package.reviews.data">
+            <img ng-src="{{review.user_image}}"/><p class="pull-right text-success f-20">{{review.average_rating}}/5</p>
+            <br>
+            <p>{{review.user_name}}</p>
+            <div>
+                <p class="m-0">Date: <span>{{review.review_date}}</span></p>
+                <p class="m-0">comment: <span>{{review.comment}}</span></p>
+            </div>
+
+        </div>
+
+        <div class="text-center">
+
+            <a href="" class="back-t-z" ng-click="back_to_pdp()">
+                Back to home
+            </a>
+        </div>
+
+
+
+
+    </ion-content>
+</ion-modal-view>

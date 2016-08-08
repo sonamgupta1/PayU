@@ -1,0 +1,56 @@
+<style>
+    .nav-bar-title{
+        margin-left: 30px;
+    }
+    .platform-android .bar .title{
+        margin-left: 30px;
+    }
+</style>
+<ion-view title="EDIT ADDRESS">
+    <ion-nav-bar class="header_color">
+        <button class="button back-button buttons button-clear header-item back-button-custom" ng-click="back_to_address()"  tabindex="0" style="margin-left: -15px; color: #fff!important;">
+            <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
+            <span class="back-text"></span></button>
+    </ion-nav-bar>
+    <ion-conten class="bg-c">
+        <div class="list card m-5">
+            <form>
+                <label class="item item-input">
+                    <input type="text" placeholder="Name" ng-model="address.name">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Address" ng-model="address.street_address">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Landmark" ng-model="address.landmark">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="City" ng-model="address.city">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="State" ng-model="address.state">
+                </label>
+                <label class="item item-input">
+                    <input type="tel" placeholder="Pincode" ng-model="address.pincode">
+                </label>
+                <label class="item item-input">
+                    <input type="number" placeholder="Mobile Number" ng-model="address.phone_number">
+                </label>
+                <ion-checkbox ng-model="address.is_default">Default</ion-checkbox>
+            </form>
+        </div>
+
+        <div class="row">
+            <div class="col-50">
+                <div class="pull-left button button-balanced" ng-click="edit_address(address.id)">
+                    SAVE
+                </div>
+            </div>
+            <div class="col-50">
+                <div class="pull-right button button-energized" ng-click="skip()">
+                    SKIP>>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

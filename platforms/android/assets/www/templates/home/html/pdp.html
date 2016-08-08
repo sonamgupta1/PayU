@@ -1,0 +1,291 @@
+<style>
+
+    .title-left{
+        text-align: center!important;
+    }
+    .nav-bar-title {
+        margin-left: 10px!important;
+    }
+
+</style>
+
+<!--<ion-view title="{{package.name}}">-->
+<ion-view>
+    <ion-nav-title></ion-nav-title>
+    <!--<ion-nav-title>{{package.name| uppercase}}</ion-nav-title>-->
+    <ion-nav-bar class="header_color">
+        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="back_to_package()"  tabindex="0" style="margin-left: -15px; color: #fff!important;">
+            <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
+            <span class="back-text"></span></button>
+    </ion-nav-bar>
+
+    <ion-content id="product-detail-content">
+
+       <md-card id="product-detail-tab-detail" class="m-0 bg-c" ng-show="package.name">
+            <img ng-if="package.photos.data.length=='1'" src="{{package.photos.data[0].url}}" class="md-card-image" alt="Card image">
+            <img ng-if="package.photos.data.length=='0'" src="../img/noimagefound.png" class="md-card-image" alt="Card image">
+            <ion-slide-box ng-if="package.photos.data.length >'1'" id="restaurant-slide-box" on-slide-changed="slideChanged($index)" show-pager="true" active-slide="0" style="height: 205px;">
+                <ion-slide ng-repeat="image_list in package.photos.data">
+                    <img ng-src="{{image_list.url}}" class="md-card-image" alt="Card image">
+                </ion-slide>
+            </ion-slide-box>
+            <div>
+                <a class="md-button md-accent md-fab fab-toolbar-medium pdp-share" aria-label="showListBottomSheet"
+                   ng-click="shareProduct($event,package.name,package.photos.data[0].url,package.slug)">
+                    <i class="ion-android-share-alt"></i>
+                </a>
+            </div>
+
+            <md-card-content class="p-0">
+                <div class="card m-5 p-10" style="margin-top: -30px!important;">
+                    <div class="row">
+                        <p class="pdp-pkg-title m-t-10">{{package.name| capitalizeFirst}}</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-50">
+                            <p class="zolo-c f-18 w-400">&nbsp;{{package.deal_price| currency:"&#8377;":0}}</p>
+                        </div>
+
+                        <div class="col-50">
+                            <div class=" pdp-pkg-rating text-c">
+
+                                <p  ng-if="package.average_rating===1||package.average_rating>1"><i class="fa fa-star"></i></p>
+                                <p  ng-if="package.average_rating==0">No rating</p>
+                                <p  ng-if="package.average_rating>1"><i class="fa fa-star"></i></p>
+                                <p  ng-if="package.average_rating>2"><i class="fa fa-star"></i></p>
+                                <p  ng-if="package.average_rating>3"><i class="fa fa-star"></i></p>
+                                <p  ng-if="package.average_rating>4"><i class="fa fa-star"></i></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row p-r-0">
+                        <div class="col-50">
+                            <p class="text-c"><i class="fa fa-map-marker"></i>&nbsp;{{package.location[0].text}}</p>
+                        </div>
+
+                        <div class="col-50">
+                            <p class="pull-right text-c clickable_text" ng-click="openReviewModel()"> Reviews: {{package.reviews.data.length}}</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-5 m-5" style="padding-bottom: 0!important;">
+                    <div class="row border-bottom p-0">
+                        <div class="col-25 text-center">
+                            <p class="f-13 text-c clickable_text" style="text-decoration: none !important;" ng-click="description_value()" ng-class="{'z-active':active_tab=='description'}">Description</p>
+                        </div>
+
+                        <div class="col-50 text-center">
+                            <p class="f-13 text-c clickable_text" style="text-decoration: none !important;" ng-click="package_summary()" ng-class="{'z-active':active_tab == 'p_summery'}">Package Summary</p>
+                        </div>
+
+                        <div class="col-25 text-center">
+                            <p class="f-13 text-c clickable_text" style="text-decoration: none !important;" ng-click="term_n_condition()" ng-class="{'z-active':active_tab=='term'}">T&C</p>
+                        </div>
+
+
+                    </div>
+
+                    <div ng-show="term_n_cond">
+                        <p data-ng-bind-html="package.term_condition"></p>
+
+                        <div class="text-center" ng-hide="package.term_condition.length">
+                            <div>No term and condition found!</div>
+                        </div>
+
+                    </div>
+                    <div ng-show="des_value">
+                        <p class="text-c m-t-5" ng-bind-html="description"></p>
+
+
+                        <p class="pull-left f-18 zolo-c" ng-click="full_desc(package.id)">More <i class="fa fa-plus-square-o"></i></p>
+                    </div>
+                    <br/>
+
+                    <div class="m-0" ng-show="pec_value">
+                        <div class="row border-bottom p-10 pdp-pkg-rating">
+                            <div class="col-50 ">
+                                <div class="text-c"><i class="fa fa-star-o zolo-c"></i>&nbsp;Ratings
+                                </div>
+                            </div>
+
+                            <div class="col-50">
+                                    <span ng-if="package.average_rating===1||package.average_rating>1">
+                                <i class="fa fa-star-o"></i></span>
+                                <div>
+                                    <span class="w-500" ng-if="package.average_rating==0">: No rating yet!</span>
+                                    <span ng-if="package.average_rating>1"><i class="fa fa-sta-or"></i></span>
+                                    <span ng-if="package.average_rating>2"><i class="fa fa-star-o"></i></span>
+                                    <span ng-if="package.average_rating>3"><i class="fa fa-star-o"></i></span>
+                                    <span ng-if="package.average_rating>4"><i class="fa fa-star-o"></i></span>
+                                </div>
+                            </div>
+                            <!--</div>-->
+                            <!--<div class="col text-right grid-pdp">-->
+                            <!--<div class="row">-->
+
+                            <!--</div>-->
+                            <!--</div>-->
+                        </div>
+
+                        <div class="row border-bottom p-10">
+                            <div class="col-50">
+                                <div class="text-c"><i class="ion-navicon zolo-c"></i>&nbsp;No. of Sales </div>
+
+                            </div>
+
+                            <div class="col-50">
+                                <div class="w-500">
+                                    : {{package.seller_profile.sales.count}}
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!--</div>-->
+
+
+                        <div class="row border-bottom p-10">
+
+                            <div class="col-50 ">
+                                <div class="text-c"> <i class="ion-android-car zolo-c"></i>&nbsp;Delivery</div>
+                            </div>
+
+                            <div class="col-50">
+                                <div class="w-500">: {{package.delivery_time}}</div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row border-bottom p-10">
+                            <div class="col-50">
+                                <div class="text-c"> <i class="ion-document zolo-c"></i>&nbsp;Package Type</div>
+
+                            </div>
+
+                            <div class="col-50">
+                                <div class="w-500">
+                                    : {{package.PackagesTypes.data.name}}
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-left p-10 m-0 text-c">Package Id:<b># {{package.id}}</b></p>
+                    </div>
+                </div>
+            <div class="card p-5 m-5">
+                <div class="row">
+
+                    <div class="col-50 border-right text-center">
+                        <div class="text-c f-16 " ng-click="seller_Profile(package.id)">View Seller Profile</div>
+                    </div>
+
+                    <div class="col-50 text-center">
+                        <div class="text-c f-16"
+                             ng-if="(wish_value == false ||wish_value == 'user not logged in')"
+                             ng-click="add_wish_list(package.seller_profile.user_id,package.id)">
+                            <i class="fa fa-heart-o f-16" ></i>&nbsp;Wishlist</div>
+                        <div class="text-c f-16" ng-click="remove_wishList(package.id)"
+                             ng-if="wish_value == true">
+                            <i class="fa fa-heart f-16 text-danger" ></i>&nbsp;Wishlist</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card m-5 p-b-20" ng-if="seller_info.length>1">
+                <div class="row  p-r-10 p-l-10 border-bottom">
+                    <div class="col-75">
+                        <p class="text-c">{{seller_info.length - 1}} Other Packages by {{package.seller_name}}</p>
+                    </div>
+                </div>
+                <ion-scroll width="500px; height: 500px" direction="xy">
+                    <div class="row">
+                        <!--<div class="col-50 card" ng-repeat="seller_package_info in seller_info" ng-click="pdp_seller_package(seller_package_info.category.data.id,seller_package_info.id)">-->
+                        <div class="col-50 card pdp_card" ng-repeat="seller_package_info in seller_info" ng-if="package.id != seller_package_info.id" ng-click="getPdp(seller_package_info.category.data.id,seller_package_info.id)">
+                            <img style="width: 100%; height: 130px" ng-if="seller_package_info.first_photo != null" ng-src="{{seller_package_info.first_photo}}">
+                            <img style="width: 100%; height: 130px" ng-if="seller_package_info.first_photo == null" ng-src="../img/noimagefound.png">
+
+                            <p class="p-r-5 p-l-5 m-0 pdp-des text-c">{{seller_package_info.name| capitalizeFirst}}</p>
+
+                            <div class="row">
+                                <div class="col-33 pull-left">
+                                    <p class="text-c"><i class="ion-android-pin">&nbsp;{{seller_package_info.location[0].text}}</i></p>
+
+                                </div>
+
+                                <div class="col-67">
+                                    <p class="pull-right text-c">{{seller_package_info.deal_price| currency:"&#8377;":0}}</p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </ion-scroll>
+
+            </div>
+
+            </md-card-content>
+        </md-card>
+    </ion-content>
+    <script type="text/ng-template" id="bottom-sheet-shared.html">
+        <md-bottom-sheet class="md-grid">
+            <!--list section-->
+            <md-list id="bottom-sheet-grid-md-list m-t-20">
+                <md-list-item>
+                    <a class="md-grid-item-content" ng-click="sharedFacebook()">
+                        <!--<md-icon md-svg-src="facebook"></md-icon>-->
+                        <img src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/facebook.png" width="40" alt="">
+                        <div class="md-grid-text"> Facebook</div>
+                    </a>
+                </md-list-item>
+                <md-list-item>
+                    <a class="md-grid-item-content" ng-click="sharedTwitter()">
+                        <!--<md-icon md-svg-src="twitter"></md-icon>-->
+                        <img src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/twitter.png" width="40" alt="">
+
+                        <div class="md-grid-text"> Twitter</div>
+                    </a>
+                </md-list-item>
+                <md-list-item>
+                    <a class="md-grid-item-content" ng-click="sharedMail()">
+                        <!--<md-icon md-svg-src="mail"></md-icon>-->
+                        <img src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/gmail.png" width="40" alt="">
+
+                        <div class="md-grid-text"> Mail</div>
+                    </a>
+                </md-list-item>
+
+                <md-list-item>
+                <a class="md-grid-item-content" ng-click="more()">
+                <img src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/insta.png" width="40" alt="">
+
+
+                <div class="md-grid-text"> More</div>
+                </a>
+                </md-list-item>
+
+
+                <md-list-item>
+                    <a class="md-grid-item-content" ng-click="sharedWhatsApp()">
+                        <!--<i class="ion-android-image"></i>-->
+                        <img src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/whatsapp.png" width="40" alt="">
+
+
+                        <div class="md-grid-text"> WhatsApp</div>
+                    </a>
+                </md-list-item>
+            </md-list>
+        </md-bottom-sheet>
+    </script>
+    <ion-footer-bar ng-hide="booking_add_ons" align-title="left" class="bar-assertive p-0 " style="background: none">
+        <div class="button-bar" ng-click="open_addon()">
+            <a class="button button-royal f-18 line-height pdp-buy border-c w-800">BUY NOW {{package.deal_price| currency:"&#8377;":0}}</a>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+
+

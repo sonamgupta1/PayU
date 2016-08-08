@@ -1,0 +1,90 @@
+<style>
+
+    .title-left{
+        text-align: center!important;
+    }
+</style>
+<ion-view title="Order Review">
+    <ion-nav-bar class="header_color">
+        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="back_to_pdp()"  tabindex="0" style="margin-left: -15px; color: #fff!important;">
+            <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
+            <span class="back-text"></span></button>
+    </ion-nav-bar>
+    <ion-content class="bg-c">
+        <p class="f-18 m-t-20 w-200 m-l-10 p-l-5">REVIEW YOUR ORDER</p>
+
+        <div class="card m-5">
+            <div class="row p-10 border-bottom">
+                <div class="col-75">
+                    <p>{{orp_result.package_title| capitalizeFirst}}</p>
+                </div>
+                <div class="col-25">
+                    <p class="zolo-c f-18 text-right">&nbsp;{{orp_result.quantity * orp_result.deal_price | currency:"&#8377;":0}}</p>
+                </div>
+            </div>
+            <div class="row p-10 p-b-0">
+                <div class="col-33">
+                    <p><b>Quantity &nbsp;:</b>&nbsp;{{orp_result.quantity}}</p>
+                </div>
+                <div class="col-67">
+                    <p class=" text-right"><b>Delivery Time &nbsp;:</b> {{orp_result.package_delivery_time}} Days</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card m-5">
+            <div class="row p-10">
+                <div class="col-50">
+                    <b class="f-14">Total Amount</b>
+                </div>
+
+                <div class="col-50">
+                    <p class="text-right f-18  zolo-c m-0">{{orp_result.total_price | currency:"&#8377;":0}}</p>
+                </div>
+            </div>
+        </div>
+
+        <p ng-if="orp_result.bookingPackagesAddons.data.length > 0" class="f-18 m-t-20 w-200 m-l-10 p-l-5">ADD ONS</p>
+
+
+        <div class="card m-5" ng-if="orp_result.bookingPackagesAddons.data.length > 0"
+             ng-repeat="add_on_list in orp_result.bookingPackagesAddons.data">
+            <div class="row border-bottom p-10">
+
+                <div class="col-75">
+                    <p>{{add_on_list.name}}</p>
+
+                    <!--<div style="padding: 5px 7px;"><b>Delivery Time &nbsp;:</b> {{add_on_list.days}} Days</div>-->
+                </div>
+
+                <div class="col-25 p-10">
+                    <div class="f-18 zolo-c text-right">{{add_on_list.amount | currency:"&#8377;":0}}</div>
+                    <!--<div class="text-right" style="padding: 5px 0;"><b>Quantity &nbsp;:</b>&nbsp;{{add_on_list.quantity}}</div>-->
+                </div>
+            </div>
+
+            <div class="row p-10 p-b-0">
+                <div class="col-33">
+                    <p><b>Quantity &nbsp;:</b> {{add_on_list.quantity}}</p>
+                </div>
+
+                <div class="col-67">
+                        <p class="text-right"><b> Delivery Time </b> &nbsp;: {{add_on_list.days}} Days </p>
+
+                </div>
+            </div>
+
+
+
+        </div>
+        <!--</div>-->
+
+
+
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-assertive p-0">
+        <div class="button-bar" ng-click="add_address()">
+            <a class="button button-royal f-18 line-height pdp-buy border-c w-800">CONTINUE TO PAYMENT</a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

@@ -1,0 +1,107 @@
+<style>
+
+    .title-left{
+        text-align: center!important;
+    }
+</style>
+
+<ion-view title="Seller Profile" id="restaurant">
+    <ion-nav-bar class="header_color">
+        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="back_to_cat_pdp()"  tabindex="0" style="margin-left: -15px; color: #fff!important;">
+            <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
+            <span class="back-text"></span></button>
+    </ion-nav-bar>
+    <ion-content>
+        <div class="cover-img" ng-show="package.seller_profile.banner" style="background: url('{{package.seller_profile.banner}}') center no-repeat; background-size:cover; height: 200px;">
+        </div>
+        <div class="cover-img" ng-hide="package.seller_profile.banner" style="background: url('../img/profile_cover.jpg') center no-repeat; background-size:cover; height: 200px;">
+        </div>
+
+        <div class="card m-0" style="overflow: initial;">
+            <div class="row">
+
+                <div class="col-50 text-center">
+                    <img ng-show="package.seller_profile.image" src="{{package.seller_profile.image}}" class="profile-img border">
+                    <img ng-hide="package.seller_profile.image" src="../img/dummy.png" class="profile-img border">
+                </div>
+
+                <div class="col-50 m-t-20">
+                    <p class="f-18">{{package.seller_profile.name| capitalizeFirst}}</p>
+                    <p><i class="fa fa-star review-c"></i>&nbsp;{{package.average_rating}}/5 <span class="text-c">({{package.reviews.data.length}} Reviews)</span></p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card m-t-0  m-5" ng-show="package.seller_profile.description">
+            <p class="p-20 text-c p-b-0">{{package.seller_profile.description| capitalizeFirst}}</p>
+
+            <!--<p class="p-10" ng-hide="package.seller_profile.description">-->
+                <!--No, description found for {{package.seller_profile.name}}-->
+            <!--</p>-->
+
+        </div>
+
+
+
+
+        <div class="card m-5">
+            <div class="row border-bottom">
+
+                <div class="col-50 text-center border-right">
+                    <!--Contact Us-->
+                    <p class="m-t-10 text-c"><i class="fa fa-phone text-success "></i>&nbsp;<a ng-href="tel:  07042698144">07042698144</a> </p>
+                </div>
+
+                <div class="col-50 text-center">
+                    <!--<p class="m-t-10"><i class="fa fa-map-marker"></i>&nbsp;{{package.seller_profile.city}} {{package.seller_profile.state}} </p>-->
+                    <p class="m-t-10 text-c"><i class="fa fa-map-marker"></i>&nbsp;Location:  Not Available</p>
+                </div>
+            </div>
+
+            <div class="row m-t-10">
+                <div class="col-50 text-center border-right" ng-if="((seller_info.length > 1)&&(seller_info.length < 10))">
+                    <p class="m-t-10 text-c">Total Packages:&nbsp;  <span class="text-success"> 0{{seller_info.length -1}}</span> </p>
+                </div>
+                <div class="col-50 text-center border-right" ng-if="((seller_info.length == 10)||(seller_info.length > 10))">
+                    <p class="m-t-10 text-c">Total Packages:&nbsp;  <span class="text-success"> {{seller_info.length -1}}</span> </p>
+                </div>
+                <div class="col-50 text-center border-right"  ng-if="seller_info.length == 0 || seller_info.length == 1">
+                    <p class="m-t-10 text-c">Total Packages:&nbsp;  <span class="text-success">0</span> </p>
+                </div>
+
+                <div class="col-50 text-center">
+                    <p class="m-t-10 text-c"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp;
+                        Skills: Not Available</p>
+                </div>
+            </div>
+        </div>
+        <div class="card p-5 m-5">
+            <div class="row border-bottom">
+                <p class=" text-c">Other package by {{package.seller_profile.name}}</p>
+                <div ng-repeat="seller_package_info in seller_info" ng-if="(package.id == seller_package_info.id)&&(seller_info.length ==1)">
+                    <p>No, more package</p>
+                </div>
+            </div>
+            <ion-scroll width="500px; height: 500px" direction="xy">
+                <div class="row">
+                    <div class="col-50 card card pdp_card" ng-repeat="seller_package_info in seller_info"
+                         ng-if="package.id != seller_package_info.id"
+                         ng-click="getPdpForCat(seller_package_info.category.data.parent_id,seller_package_info.category.data.id,seller_package_info.id)">
+                        <img style="width: 100%; height: 130px" ng-src="{{seller_package_info.first_photo}}">
+                        <p class="p-r-5 p-l-5 m-0 pdp-des text-c">{{seller_package_info.name| capitalizeFirst}}</p>
+
+                        <div class="row">
+                            <p class="pull-left">
+                                {{seller_package_info.location[0].text}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </ion-scroll>
+        </div>
+
+    </ion-content>
+</ion-view>

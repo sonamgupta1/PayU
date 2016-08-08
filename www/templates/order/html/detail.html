@@ -1,0 +1,86 @@
+<style>
+
+    .title-left{
+        text-align: center!important;
+    }
+</style>
+<ion-view title="Order Detail">
+    <ion-nav-bar class="header_color">
+        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="order_list()"  tabindex="0" style="margin-left: -15px; color: #fff!important;">
+            <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
+            <span class="back-text"></span></button>
+    </ion-nav-bar>
+    <ion-content class="bg-c">
+        <div class="card p-5 m-5">
+            <div class="row">
+                <div class="col-50">
+                    <p>Order # <b>{{order_detail.id}}</b></p>
+
+                </div>
+                <div class="col-50">
+                    <p class="pull-right">By:<b> {{order_detail.seller_profile.name}}</b></p>
+
+                </div>
+
+            </div>
+            <hr>
+
+
+
+            <div class="row p-0 m-b-20 odp-img">
+                <!--<div class="col-40">-->
+                <img ng-src="{{order_detail.first_photo}}" ng-show="order_detail.first_photo!=null" width="400" height="260">
+                <img src=" ../img/default.png" ng-show="order_detail.first_photo==null" width="100%" height="260">
+                <!--</div>-->
+            </div>
+            <div class="row">
+                <div class="col-75">
+                    <p><b>{{order_detail.package_title| capitalizeFirst}}</b></p>
+                    <!--<br>-->
+                    <!--<p>Quantity<b>{{order_detail.quantity}}</b></p>-->
+
+                </div>
+
+                <div class="col-25 text-right">
+                    <p>Quantity:<b> {{order_detail.quantity}}</b></p>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+        <div class="card m-5">
+            <div class="row m-t-10 p-10">
+                <div class="col-50">
+                    <p class="text-c">Amount </p>
+                    <p class="text-c">Order Status </p>
+                    <p class="text-c">Order Date</p>
+
+                </div>
+
+                <div class="col-50">
+                    <p> : {{total_price| currency:"&#8377;":0}}</p>
+                    <p> : {{order_detail.booking_status.replace('_',' ')}}</p>
+                    <p> : {{order_detail.order_date}}</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card m-5" style="background-color: #f5f5f5;">
+            <div class="row  p-10">
+                <p class="f-17">To see your Order Details please go to our Desktop Site <a href="">www.imzolo.com</a> </p>
+
+            </div>
+        </div>
+
+
+    </ion-content>
+</ion-view>

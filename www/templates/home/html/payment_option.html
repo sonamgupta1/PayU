@@ -1,0 +1,40 @@
+<ion-view title="Make Payment">
+
+    <ion-nav-bar class="header_color">
+        <ion-nav-back-button class="button-clear">
+            <i class="icon ion-ios-arrow-back white-c"></i>
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content>
+        <p class="w-100 f-18 m-t-20 p-l-10">PAYMENT OPTIONS</p>
+        <ion-list class="m-t-10">
+            <ion-item class="p-0">
+
+
+                <ion-radio ng-model="choice.val" ng-value="1" ng-change="payment_option_list(1)"><img src="https://s3-ap-southeast-1.amazonaws.com/zolo/booking_icons/payumoney.png" width="100" alt=""><br>(Pay Using Credit/Debit card and Net banking)</ion-radio>
+
+
+                <!--<ion-radio ng-model="choice.val" ng-value="2" ng-change="payment_option_list(2)"><img src="https://s3-ap-southeast-1.amazonaws.com/zolo/booking_icons/Paytm.png" width="70" alt=""><br>(Pay Using Paytm wallet)</ion-radio>-->
+
+                <!--<ion-radio ng-model="choice.val" ng-value="3" ng-change="payment_option_list(3)"><img src="https://s3-ap-southeast-1.amazonaws.com/zolo/booking_icons/zolo+favicon-01.png" width="50" alt=""><br>(Pay Using ZOLO wallet)</ion-radio>-->
+
+                <button class="button f-18 w-500 bg" style="width: 100%; color: #fff; border: 1px solid #aaa;" ng-disabled="disable_value" ng-click="makePay(value)">Make Payment</button>
+                </ion-item>
+
+
+        <div class="row m-t-10 p-0">
+            <div class="col-33 item p-5 m-0 text-center">
+                <p class="f-12"><i class="fa fa-lock "></i>&nbsp;100%<br> Secure Payments </p>
+            </div>
+
+            <div class="col-33 item text-center  m-0 p-5">
+                <p class="f-12"><i class="fa fa-shield"></i>&nbsp;100%<br> Buyer Protection</p>
+            </div>
+
+            <div class="col-33 item text-center  m-0 p-5" ng-click="refund_Policy_open()">
+                <p class="f-12"><i class="fa fa-refresh"></i>&nbsp;Buyer<br> Friendly Refund Policy</p>
+            </div>
+        </div>
+    </ion-list>
+    </ion-content>
+</ion-view>

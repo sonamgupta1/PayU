@@ -1,0 +1,41 @@
+<ion-view title="Login" hide-nav-bar="true">
+    <ion-content id="social-login" class="background_img_optional">
+        <div id="z-login-header" class="bar bar-header">
+            <a ng-click="optional_page()"class="button back-button buttons button-clear header-item nav-back-btn">
+                <i class="icon ion-ios-arrow-back"></i>
+            </a>
+            <div class="h1 title login-t black-c">Sign up</div>
+            <a ng-click="redirection()"class="button back-button buttons button-clear header-item nav-back-btn">
+                <i class="ion-close-round" aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="login-section" id="signup-section">
+            <div class="card">
+                <div class="item item-text-wrap">
+                    <form  ng-submit="signUp()">
+                        <md-input-container md-no-float="">
+                            <input  type="text" ng-model="user.name" placeholder="Name" style="border-bottom: 1px solid #ededed;">
+                        </md-input-container>
+                        <md-input-container md-no-float="">
+                            <input  type="number" ng-model="user.mobile" placeholder="Phone Number" style="border-bottom: 1px solid #ededed;">
+                        </md-input-container>
+                        <md-input-container md-no-float="">
+                            <input  type="email" ng-model="user.email" placeholder="Email" style="border-bottom: 1px solid #ededed;">
+                        </md-input-container>
+                        <md-input-container md-no-float="">
+                            <input ng-model="user.password" type="{{show_password ? 'text':'password'}}" placeholder="Password" style="border-bottom: 1px solid #ededed;">
+                            <span class="password-s" ng-click="show_password =!show_password">show</span>
+                        </md-input-container>
+
+                        <button type="submit" class="login-btn">
+                            <p>Register</p>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+
+
+

@@ -1,0 +1,86 @@
+<style>
+    .bar .button.button-icon:before, .bar .button .icon:before, .bar .button.icon:before, .bar .button.icon-left:before, .bar .button.icon-right:before {
+        padding-right: 2px!important;
+        padding-left: 2px!important;
+        font-size: 24px!important;
+        line-height: 41px!important;
+    }
+</style>
+
+<ion-view title="ADDRESS CONFIRMATION">
+
+    <ion-nav-bar class="header_color">
+        <ion-nav-back-button class="button-clear">
+            <i class="icon ion-ios-arrow-back white-c"></i>
+        </ion-nav-back-button>
+    </ion-nav-bar>
+
+
+    <ion-content class="bg-c">
+        <p class="w-100 f-18 m-t-20 p-l-10 m-b-0">CONFIRM ADDRESS</p>
+
+
+        <div class="card p-20 text-center" ng-show="user_address.length == '0'">
+                <p class="text-center">No Address found. Please add an address </p>
+                <a href="" class="back-t-z" ng-click="address_info()">Add New Address</a>
+
+        </div>
+
+
+
+        <div class="card m-t-5" ng-repeat="address in user_address" ng-show="user_address.length != '0'">
+            <!--<div class="item item-text-wrap">-->
+            <div>
+                <ion-radio ng-model="address.is_default" ng-value="1"
+                           ng-change="default_address(address,address.id,address.is_default)"
+                           ng-selected="address.is_default=='1'">
+                    <b>{{address.name}}</b>
+                </ion-radio>
+
+
+                <div class="item item-text-wrap"><p>{{address.street_address}},{{address.landmark}}</p>
+                    <p>{{address.city}} {{address.pincode}}</p>
+                    <p>{{address.state}}</p>
+                    <p>Mobile: {{address.phone_number}} </p>
+                </div>
+
+            </div>
+
+            <div class="row item p-10" ng-click="edit_address(address.id)">
+                <div class="col-80">
+                    <p>Edit/Change Address</p>
+                </div>
+                <div class="col-20 text-right">
+                    <i class="fa fa-angle-right"></i>
+
+                </div>
+            </div>
+
+            <div class="row item p-10" ng-click="delete_add(address.id)">
+                <div class="col-80">
+                    <p>Remove address</p>
+                </div>
+
+                <div class="col-20 text-right">
+                    <i class="fa fa-angle-right"></i>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-right p-r-10" ng-click="skip()">Skip>></p>
+
+
+    </ion-content>
+    <div class="footer-fab-bar" style="padding-bottom: 40px;">
+        <a class="md-button md-accent md-fab fab-footer pdp-share" ng-click="address_info()" aria-label="Add" tabindex="0">
+            <i class="fa fa-plus"></i>
+        </a>
+    </div>
+    <ion-footer-bar align-title="left" class="bar-assertive p-0 bar bar-footer">
+        <div class="button-bar" ng-click="payment_option()">
+            <a class="button button-royal f-18 line-height pdp-buy border-c w-800">CONTINUE TO PAYMENT</a>
+        </div>
+    </ion-footer-bar>
+
+
+</ion-view>

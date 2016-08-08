@@ -1,0 +1,24 @@
+<ion-view title="Forget Password" hide-nav-bar="true">
+    <ion-content id="social-login" class="background_img_optional">
+        <div id="z-login-header" class="bar bar-header">
+            <a ng-click="navigateTo('app.login_index')"class="button back-button buttons button-clear header-item nav-back-btn">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+            <div class="h1 title login-t">Forget Password</div>
+        </div>
+        <div class="login-section">
+            <div class="card">
+                <div class="item item-text-wrap">
+                    <form action="">
+                        <md-input-container md-no-float="">
+                            <input  type="email" ng-model="user.email" placeholder="Email" style="border-bottom: 1px solid #ededed;">
+                        </md-input-container>
+                        <div class="login-btn" ng-click="submit_forget_pwd()">
+                            <p>Submit</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

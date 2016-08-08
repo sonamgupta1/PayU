@@ -1,0 +1,53 @@
+<ion-view title="" hide-nav-bar="true">
+
+    <ion-content id="social-login"class="background_img_optional">
+        <div align="left">
+            <a  ng-click="redirection_to()"class="button back-button buttons button-clear header-item nav-back-btn black-c">
+            <i class="icon ion-ios-arrow-back"></i>
+        </a></div>
+
+        <form class="fakeLogin-form">
+            <div>
+                <img src="img/favicon.png"/>
+            </div>
+
+            <div class="sub-header">
+                <h3 class=" w-200">Monetize Your Talent</h3>
+            </div>
+            <div id="fakeLogin">
+                <div>
+                    <button type="button" ng-click="demo_fb()"
+                            class="md-raised social-button md-button md-default-theme  fb">
+                        Login with Facebook
+                    </button>
+                </div>
+                <div>
+                    <button type="button" ng-click="googleLogin()"
+                            class="md-raised social-button md-button md-default-theme g-plus">
+                        Login wih Google+
+                    </button>
+                </div>
+
+                <div class="m-t-20">
+                    <p class=" f-16">Or use email</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-50">
+                        <button ng-click="sign_up_page()" type="button"
+                                class="md-raised social-button md-button md-default-theme login">
+                            Sign Up
+                        </button>
+                    </div>
+
+                    <div class="col-50">
+                        <button ng-click="login_page()" type="button"
+                                class="md-raised social-button md-button md-default-theme signup">
+                            Login
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

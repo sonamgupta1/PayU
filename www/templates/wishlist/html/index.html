@@ -1,0 +1,42 @@
+<ion-view title="WISHLIST" id="restaurant">
+    <ion-content>
+        <div class="card m-5 p-b-0 zolo_card" ng-show="wishList.length !='0'" ng-repeat="wishListInfo in wishList">
+            <div class="row">
+                <div class="col-33" id="image_display_1" ng-click="productDescription(wishListInfo.subcategory_id,wishListInfo.id)">
+                    <img width="100%" height="100" ng-if="wishListInfo.first_photo != null"  src="{{wishListInfo.first_photo}}" class="pkg-img">
+                    <img width="100%" height="100"  ng-if="wishListInfo.first_photo == null" src="../img/noimagefound.png" class="pkg-img">
+                </div>
+                <div class="col-67" id="text_size">
+                    <div class="w-500 p-r-10 p-l-10 m-b-0" ng-click="productDescription(wishListInfo.subcategory_id,wishListInfo.id)" style="height: 30px; line-height: 18px;">{{wishListInfo.name | limitTo: 40}}..</div>
+
+                    <div class="text-c p-r-10 p-l-10 f-12 m-t-5">{{wishListInfo.seller_name}}</div>
+                    <div class="row">
+                        <div class="col-75">
+                            <div class="text-c  m-b-0"><i class="fa fa-star review-c"></i>&nbsp;{{wishListInfo.average_rating}}/5 <span class="text-c f-12">(0 Reviews)</span></div>
+
+                            <div class=" m-b-0">&nbsp;<i class="fa fa-map-marker text-c">&nbsp;{{wishListInfo.location[0].text}}, {{wishListInfo.location[1].text}} </i>
+                            </div>
+                        </div>
+
+                        <div class="col-25 text-center">
+                            <div class="zolo-c f-14  w-500">&nbsp;{{wishListInfo.deal_price| currency:"&#8377;":0}}</div>
+                            <i class="fa fa-trash-o f-20" ng-click="remove_wishList(wishListInfo.id)"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="row r-wishlist" ng-click="remove_wishList(wishListInfo.id)">-->
+                <!--<div class="">Remove From Wishlist</div>-->
+            <!--</div>-->
+
+
+        </div>
+
+
+
+        <div class="card m-5 text-center" ng-if="wishList.length =='0'" style="max-height: 110px;">
+           Sorry, no item in your wishlist!
+        </div>
+
+    </ion-content>
+</ion-view>

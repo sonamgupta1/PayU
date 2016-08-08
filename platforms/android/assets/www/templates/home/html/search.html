@@ -1,0 +1,82 @@
+<style>
+    .bar .button.button-icon:before, .bar .button .icon:before, .bar .button.icon:before, .bar .button.icon-left:before, .bar .button.icon-right:before {
+        padding-right: 2px!important;
+        padding-left: 2px!important;
+        font-size: 24px!important;
+        line-height: 41px!important;
+    }
+</style>
+<ion-view title="" hide-nav-bar="true">
+    <ion-content class="bg-c">
+        <div class="bar bar-header item-input-inset">
+            <button class="button button-clear pull-left" ng-click="back_to_home()">
+                <i class="icon ion-ios-arrow-back"></i>
+            </button>
+            <label class="item-input-wrapper">
+                <i class="icon ion-ios-search placeholder-icon"></i>
+                <input type="search" placeholder="Search" ng-model="filterText" ng-keypress="search_result(filterText)">
+            </label>
+            <button class="button button-clear w-500" ng-click="back_to_home()">
+                Cancel
+            </button>
+        </div>
+        <div class="card m-5 p-10 "  id="text_size">
+
+            <div class="text-center">
+                <p class="f-18 m-0">Your Views</p>
+            </div>
+
+
+            <div class="row" ng-show="text_1">
+                <div class="col-67 row_presentation" ng-click="search_package(text_1)">
+                   <i class="icon ion-android-time pull-left">   {{text_1}}</i>
+                </div>
+                <div class="col-33 row_presentation" ng-click="clear_text_1()">
+                  <i class="icon ion-close pull-right"></i>
+                </div>
+            </div>
+
+
+            <div class="row item p-5" ng-show="text_2">
+                <div class="col-67 row_presentation" ng-click="search_package(text_2)">
+                    <i class="icon ion-android-time pull-left">   {{text_2}}</i>
+                </div>
+                <div class="col-33 row_presentation" ng-click="clear_text_2()">
+                    <i class="icon ion-close pull-right"></i>
+
+                </div>
+            </div>
+            <div class="row item" ng-show="text_3">
+                <div class="col-67 row_presentation" ng-click="search_package(text_3)">
+                    <i class="icon ion-android-time pull-left">   {{text_3}}</i>
+                </div>
+                <div class="col-33 row_presentation" ng-click="clear_text_3()">
+                    <i class="icon ion-close pull-right"></i>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+
+        <div class="p-10 ">
+            <p class="m-0 f-18">Search for</p>
+        </div>
+
+
+        <div class="card m-5">
+            <div class="row item p-10" ng-repeat="package in special_packages" ng-click="search_package(package)">
+                <div class="col-67 row_presentation">
+                    {{package}}
+                </div>
+                <div class="col-33 row_presentation">
+                  <i class="icon ion-chevron-right pull-right"></i>
+                </div>
+            </div>
+        </div>
+
+
+    </ion-content>
+</ion-view>

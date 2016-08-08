@@ -1,0 +1,93 @@
+<ion-view title="MY PROFILE" id="restaurant">
+    <ion-content>
+
+        <div class="cover-img" ng-show="profile.banner"
+             style="background: url('{{profile.banner}}') center no-repeat; background-size:cover; height: 200px;">
+        </div>
+
+        <div class="cover-img" ng-hide="profile.banner"
+             style="background: url('../img/profile_cover.jpg') center no-repeat; background-size:cover; height: 200px;">
+        </div>
+
+        <div class="card m-0" style="overflow: initial;">
+
+
+            <div class="row">
+
+                <div class="col-50 text-center">
+                    <img ng-show="profile.image" src="{{profile.image}}" class="profile-img border">
+                    <img ng-hide="profile.image" src="../img/dummy.png" class="profile-img border">
+                </div>
+
+                <div class="col-50 m-t-20">
+                    <p class="f-18">{{profile.name}}</p>
+                    <!--<p ng-if="profile.is_seller != '0'"><i class="fa fa-star review-c"></i>&nbsp;{{package.average_rating}}/5 <span class="text-c">({{package.reviews.data.length}} Reviews)</span></p>-->
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card m-t-0  m-5" ng-if="profile.is_seller != '0'">
+            <p class="p-20 text-c p-b-0"><b>Description: </b>{{profile.description}}</p>
+
+            <!--<p class="p-10 text-center" ng-hide="profile.description">-->
+                <!--No, description found for {{profile.name}}-->
+            <!--</p>-->
+
+        </div>
+
+
+        <div class="card m-5">
+            <div class="row border-bottom">
+
+                <div class="col-50 text-center">
+                    <p class="m-t-10 text-c"><i class="fa fa-phone text-success "></i>&nbsp;<a
+                            ng-href="tel:  {{profile.mobile}}">{{profile.mobile}}</a></p>
+                </div>
+
+                <div class="col-50 text-center">
+                    <!--<p class="m-t-10"><i class="fa fa-map-marker"></i>&nbsp;{{profile.city}} {{profile.state}} </p>-->
+                    <p class="m-t-10"><i class="fa fa-map-marker"></i>&nbsp; Not Available </p>
+                </div>
+            </div>
+
+            <div class="row m-t-10" ng-if="profile.is_seller == '1'">
+                <div class="col-50 text-center" ng-if="seller_info.length > 0">
+                    <p class="m-t-10 text-c">Total Packages:&nbsp; <span
+                            class="text-success">{{seller_info.length}}</span></p>
+                </div>
+
+                <div class="col-50 text-center" ng-if="seller_info.length == 0">
+                    <p class="m-t-10 text-c">Total Packages:&nbsp; <span class="text-success">0</span></p>
+                </div>
+
+
+                <div class="col-50 text-center">
+                    <p class="m-t-10 text-c">
+                    <p class="m-t-10 text-c"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp;
+                        Skills: Not Available</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-5 m-5" ng-if="((profile.is_seller != '0')&&(seller_info.length > 0 ))">
+            <div class="row border-bottom">
+                <p class=" text-c">Other package by {{profile.name}}</p>
+            </div>
+            <ion-scroll width="500px; height: 500px" direction="xy">
+                <div class="row">
+                    <div class="col-50 card" ng-repeat="seller_package_info in seller_info">
+                        <img style="width: 100%; height: 130px" ng-src="{{seller_package_info.first_photo}}">
+                        <p class="p-r-5 p-l-5 m-0 pdp-des text-c">{{seller_package_info.name}}</p>
+
+                        <div class="row">
+                            <p class="pull-left">
+                                [{{seller_package_info.location[0].text}}]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </ion-scroll>
+        </div>
+    </ion-content>
+</ion-view>

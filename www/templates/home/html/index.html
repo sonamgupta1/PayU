@@ -1,0 +1,55 @@
+<ion-view back-button-hide="false">
+    <ion-nav-title>{{title}}
+        <i class="icon ion-ios-search-strong placeholder-icon f-25 pull-right search_icon" ng-click="open_search()">
+        </i>
+    </ion-nav-title>
+    <!--<ion-header-bar class="bar bar-subheader item-input-inset p-0 search-box">-->
+        <!--<label class="item-input-wrapper search bg-white p-l-20">-->
+            <!--<i class="ion-ios-search-strong placeholder-icon f-25"></i>-->
+            <!--<input class="f-16 p-40-10"  placeholder="Search on Zolo..." ng-model="filterText" ng-keypress="search_result($event.keyCode == 32)" type="search">-->
+        <!--</label>-->
+    <!--</ion-header-bar>-->
+
+    <ion-nav-buttons side="right">
+    </ion-nav-buttons>
+
+    <ion-content id="restaurant">
+        <ion-slide-box id="restaurant-slide-box" show-pager="true" active-slide="0">
+            <ion-slide ng-if="banner.length=='0'">
+                    <img src="../img/default.png">
+            </ion-slide>
+            <ion-slide style="padding-top: 0px !important;"  ng-if="banner.length >= 1" ng-repeat="banner_url in banner">
+                <a ng-href="{{banner_url.url}}">
+                    <img ng-src="{{banner_url.image_url}}" width="100%;">
+                </a>
+            </ion-slide>
+        </ion-slide-box>
+
+        <div class="card m-5" style="margin:10px 0; border-bottom: 1px solid #eee;" ng-repeat="category in category_n_sub_catagery_list"
+             ng-if="category.id != 13 && category.parent_id == null">
+            <div class="row" style="border-bottom: 1px solid #eee;">
+                <div class="col-75 content p-0-10">
+                    <p class="w-100 m-t-10 f-18 " style="text-transform: capitalize;">
+                        {{category.name}}
+                    </p>
+                </div>
+
+                <div class="col-25 content">
+                    <p  ng-click="allSubcategory(category.id)" class="m-t-10 zolo-c f-13">
+                        VIEW ALL
+                        <i class="ion-chevron-right"></i>
+                    </p>
+                </div>
+            </div>
+                <div class="row m-t-20">
+                    <div class="col-50" ng-repeat="subCategory_detail in category.subCategory.data">
+                        <figure class="text-center">
+                            <img id="image_display" style="width: 100%; height: auto; padding: 3% 3%;" ng-src="{{subCategory_detail.image}}"  ng-click="getPackages(subCategory_detail.id)">
+
+                            <figcaption>{{subCategory_detail.name}}</figcaption>
+                        </figure>
+                    </div>
+                </div>
+        </div>
+    </ion-content>
+</ion-view>

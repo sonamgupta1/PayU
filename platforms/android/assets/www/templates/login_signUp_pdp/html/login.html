@@ -1,0 +1,37 @@
+<ion-view title="Login" hide-nav-bar="true">
+    <ion-content id="social-login" class="background_img_optional">
+        <div id="z-login-header" class="bar bar-header">
+
+            <a ng-click="redirection_to_option()" class="button back-button buttons button-clear header-item nav-back-btn">
+                <i class="icon ion-ios-arrow-back"></i>
+            </a>
+            <div class="h1 title login-t black-c">Login</div>
+            <a ng-click="redirection_to()" class="button back-button buttons button-clear header-item nav-back-btn">
+                <i class="ion-close-round" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div class="login-section">
+            <div class="card">
+                <div class="item item-text-wrap">
+                    <form ng-submit="login()">
+                        <md-input-container md-no-float="">
+                            <input  type="email" ng-model="user.email" placeholder="Email" style="border-bottom: 1px solid #ededed;">
+                        </md-input-container>
+                        <md-input-container md-no-float="">
+                            <input ng-model="user.password" type="{{show_password ? 'text':'password'}}" placeholder="Password" style="border-bottom: 1px solid #ededed;">
+                            <span class="password-s" ng-click="show_password =!show_password">show</span>
+                        </md-input-container>
+                        <div class="forgot-p"><a href="" class="text-c" ng-click="forget_pwd()">Forgot Password?</a></div>
+                        <button type="submit" class="login-btn">
+                            <p>Login</p>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+
+
+

@@ -1,0 +1,78 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <div class="row" ng-hide="sort_by">
+            <div class="col-50" ng-click="closeSortAndFilterModal()">
+                <i class="ion-ios-close-empty f-20 l-h-25" aria-hidden="true"></i>
+                <span class="text-c m-l-20 f-16 l-h-25">FILTER BY</span>
+            </div>
+            <div class="col-50 text-right">
+                <span class="text-c f-16 l-h-25" ng-click="filter_clear()">CLEAR</span>
+                <div class="filter-btn pull-right m-l-20" ng-click="filter_apply()">APPLY</div>
+
+            </div>
+        </div>
+
+        <div class="row p-t-10" ng-show="sort_by">
+            <div class="col-50" ng-click="closeSortAndFilterModal()">
+                <i class="black-c ion-close-round f-20 l-h-25" aria-hidden="true"></i>
+                <span class="text-c m-l-20 f-16 l-h-25">SORT BY</span>
+            </div>
+
+            <div class="col-50 text-right">
+                <span class="text-c f-16 l-h-25" ng-click="filter_clear()">CLEAR</span>
+                <div class="filter-btn pull-right m-l-20" ng-click="sort_apply(choice.val)">APPLY</div>
+
+            </div>
+        </div>
+
+    </ion-header-bar>
+    <ion-content>
+        <div class="row p-0">
+            <div class="col-20">
+                <ion-list>
+                    <ion-item class="p-7 text-center" ng-click="sorting_option()" ng-class="{'zolo-c':sorting_type=='sort'}">
+                        <i class="fa fa-long-arrow-up"></i> <i class="fa fa-long-arrow-down"></i><br> Sort
+                    </ion-item>
+                    <ion-item class="p-7 text-center" ng-click="price_list_option()" ng-class="{'zolo-c':sorting_type=='price'}">
+                        <i class="fa fa-inr"></i>
+                        <br>Price
+                    </ion-item>
+                </ion-list>
+            </div>
+            <div class="col-80">
+                <ion-list ng-show="sorting_value">
+                    <ion-item class="p-0">
+                        <ion-radio ng-model="choice.val" ng-value="1" ng-change="makeSort(1)">  &#8377; Price- high to low </ion-radio>
+                    </ion-item>
+                    <ion-item class="p-0">
+                        <ion-radio ng-model="choice.val" ng-value="2" ng-change="makeSort(2)">   &#8377; Price- low to high</ion-radio>
+                    </ion-item>
+
+                    <ion-item class="p-0">
+                        <ion-radio ng-model="choice.val" ng-value="3" ng-change="makeSort(3)"> What's new?</ion-radio>
+                    </ion-item>
+
+                </ion-list>
+
+                <ion-list ng-show="price_list">
+                    <ion-item class="p-0">
+                        <ion-radio ng-model="filter.price" ng-change="addPrice(0,1000)" value="1">  &#8377; 1000 and Below</ion-radio>
+                    </ion-item>
+                    <ion-item class="p-0">
+                        <ion-radio ng-model="filter.price" value="2" ng-change="addPrice(1001,10000)"> &#8377; 1001 - &#8377; 10000</ion-radio>
+                    </ion-item>
+                    <ion-item class="p-0">
+                        <ion-radio ng-model="filter.price" value="3" ng-change="addPrice(10001,50000)">
+                            &#8377; 10001 - &#8377; 50000</ion-radio>
+                    </ion-item>
+                    <ion-item class="p-0">
+                        <ion-radio ng-model="filter.price" value="4" ng-change="addPrice(50001,100000)">&#8377; 50001 - &#8377; 100000</ion-radio>
+                    </ion-item>
+                    <ion-item class="p-0">
+                        <ion-radio ng-model="filter.price" value="5" ng-change="addPrice(100001,max_price)"> &#8377; 100001 and Above</ion-radio>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

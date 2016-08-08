@@ -1,0 +1,114 @@
+<style>
+
+    .title-left{
+        text-align: center!important;
+    }
+
+    /*.platform-android .bar .title{*/
+        /*text-transform: uppercase;*/
+    /*}*/
+
+</style>
+
+<ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content>
+        <ion-nav-bar class="header_color">
+            <div class="title title-center header-item">ZOLO</div>
+
+            <ion-nav-back-button class="button-icon ion-arrow-left-c"></ion-nav-back-button>
+            <ion-nav-buttons side="left">
+                <!--<button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()" style="color: #fff;"></button>-->
+                <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()" style="color: #fff;"></button>
+            </ion-nav-buttons>
+
+        </ion-nav-bar>
+        <ion-nav-view animation="no-animation" name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left">
+        <ion-header-bar class="header_color">
+            <!--<h2 class="white-c text-center">Zolo</h2>-->
+
+            <!--<a href="#/app/home" menu-close>-->
+                <img src="img/zolo-logo.png" width="100" alt="">
+            <!--</a>-->
+        </ion-header-bar>
+        <ion-content>
+            <ion-list>
+                <ion-item class="border-0 " menu-close ng-click="my_profile()" ng-show="!login_value">
+                    <!--<i class="fa fa-tags" aria-hidden="true"></i>-->
+                    <!--<img src="img/dummy.png" alt="" class="img-circle">-->
+                    <img ng-src="{{profile_img || 'img/dummy.png'}}" alt="" class="img-circle">
+                    &nbsp;Hi,{{profile_name}}
+                </ion-item>
+                <ion-item class="border-0 " menu-close href="#/app/order_list" ng-show="!login_value">
+                    <i class="fa fa-file-photo-o zolo-c" aria-hidden="true"></i>
+                    &nbsp; Your orders
+                </ion-item>
+                <!--<ion-item class="border-0 border-bottom2" menu-close href="#/app/wishlist" ng-show="!login_value">-->
+                    <!--<i class="fa fa-heart-o zolo-c" aria-hidden="true"></i>-->
+                    <!--&nbsp;Wishlist-->
+                <!--</ion-item>-->
+                <ion-item class="border-0 border-bottom2" menu-close ng-click="wish_list()" ng-show="!login_value">
+                    <i class="fa fa-heart-o zolo-c" aria-hidden="true"></i>
+                    &nbsp; Wishlist
+                </ion-item>
+
+                <ion-item class="border-0" menu-close href="#/app/home">
+                    <div>
+                        <img class="align-img" src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/home.png" width="20" alt="">&nbsp; Home
+                    </div>
+                </ion-item>
+
+                <ion-item class="border-0" menu-close href="#/app/allCategory">
+                    <div>
+                        <img class="align-img" src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/category.png" width="20" alt="">&nbsp; Category
+                    </div>
+                </ion-item>
+
+
+
+                <ion-item class="border-0" menu-close ng-show="login_value" ng-click="login_options()">
+                    <div>
+                        <img class="align-img" src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/signup.png" width="20" alt=""> &nbsp; Login/SignUp
+                    </div>
+                </ion-item>
+
+                <ion-item class="border-0 border-top" menu-close href="#/app/aboutUs">
+                    <div>
+                        <img class="align-img" src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/about.png" width="20" alt=""> &nbsp; About Us
+                    </div>
+                </ion-item>
+
+                <ion-item class="border-0" menu-close href="#/app/contactUs">
+                    <div>
+                        <img class="align-img" src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/contactus.png" width="20" alt=""> &nbsp;  Contact Us
+                    </div>
+                </ion-item>
+
+
+                <ion-item class="border-0 border-top" menu-close href="#/app/more">
+                    <div>
+                        <img class="align-img" src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/terms.png" width="20" alt=""> &nbsp; More
+                    </div>
+
+                </ion-item>
+
+
+                <ion-item class="border-0" menu-close ng-show="!login_value" ng-click="logOut()">
+                    <div>
+                        <img class="align-img" src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/logout.png" width="20" alt="">
+                        &nbsp; Logout
+                    </div>
+                </ion-item>
+
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>
+
+
+
+
+
+
+

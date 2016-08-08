@@ -1,0 +1,64 @@
+<ion-view title="Your Orders">
+    <ion-content class="bg-c">
+            <!--<ion-item class="p-5 border-0 m-5" ng-show="order_list.length!= '0'" ng-repeat="order in order_list"  ng-click="order_detail(order.id)">-->
+                <div class="card p-5 m-5"  ng-show="order_list.length!= '0'" ng-repeat="order in order_list"  ng-click="order_detail(order.id)">
+
+                <div class="row">
+                    <div class="col-50">
+                        <p>Order # <b>{{order.id}}</b></p>
+
+                    </div>
+                    <div class="col-50">
+                        <!--<p class="pull-right">By:<b> {{order_detail.seller_profile.name}} </b></p>-->
+
+                    </div>
+
+                </div>
+                <hr>
+                <div class="row ">
+                    <div class="col-33">
+                        <p class="text-c">Package Name</p>
+
+                    </div>
+
+                    <div class="col-67">
+                        <p class="w-500">:&nbsp;{{order.package_title| capitalizeFirst}}</p>
+
+                    </div>
+
+                </div>
+                <!--<hr>-->
+
+                <div class="row">
+                    <div class="col-33">
+                        <p class="text-c">Order Date</p>
+
+                    </div>
+
+                    <div class="col-67">
+                        <p class="w-500">:&nbsp;{{order.order_date}}</p>
+
+                    </div>
+
+                </div>
+
+
+                </div>
+
+
+
+            </ion-item>
+
+            <!--<ion-item class="p-0" ng-show="order_list.length == '0'">-->
+                <!--<p class="text-c"> No,order till now.</p>-->
+            <!--</ion-item>-->
+        </ion-list>
+
+        <div class="card m-5 text-center" ng-show="order_list.length == '0'" style="max-height: 110px;">
+          <p> Sorry, no order till now</p>
+
+            <a class="back-t-z" ng-click="go_home()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to home</a>
+
+        </div>
+    </ion-content>
+</ion-view>

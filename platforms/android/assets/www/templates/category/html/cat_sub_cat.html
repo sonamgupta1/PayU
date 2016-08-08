@@ -1,0 +1,33 @@
+<style>
+
+    .title-left{
+        text-align: center!important;
+        text-transform: uppercase!important;
+    }
+
+</style>
+<ion-view>
+    <ion-nav-title style="text-transform: uppercase;">{{sub_catagery_list.name}}</ion-nav-title>
+    <ion-nav-bar class="header_color">
+        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="back_to_category_side()"  tabindex="0" style="margin-left: -15px; color: #fff!important;">
+            <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
+            <span class="back-text"></span></button>
+    </ion-nav-bar>
+
+    <ion-content id="restaurant">
+        <ion-slide-box id="restaurant-slide-box" show-pager="false" active-slide="0">
+            <ion-slide style="padding-top: 0px !important;">
+                <img ng-if="sub_catagery_list.image != null" ng-src="{{sub_catagery_list.image}}" width="100%;">
+                <img ng-if="sub_catagery_list.image == null" src="../img/noimagefound.png" width="100%;">
+            </ion-slide>
+        </ion-slide-box>
+        <ion-list>
+            <ion-item ng-repeat="sub_catagery in sub_catagery_list.subCategory.data" ng-click="getPackagesForCat(sub_catagery_list.id,sub_catagery.id)">
+                <span>{{sub_catagery.name}}</span>
+            </ion-item>
+        </ion-list>
+        <div ng-show="sub_catagery_list.subCategory.data.length == '0'" class="text-center">
+            Sorry,no sub category found!
+        </div>
+    </ion-content>
+</ion-view>

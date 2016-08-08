@@ -1,0 +1,29 @@
+<ion-view title="Contact Us">
+    <ion-content class="bg-c">
+        <div class="card p-10 m-5">
+            <h3 class="zolo-c  text-center">Contact us</h3>
+            <form action="">
+                <md-input-container md-no-float="">
+                    <input  type="text"  placeholder="Name" style="border-bottom: 1px solid #ededed;" ng-model="customer.name">
+                </md-input-container>
+                <md-input-container md-no-float="">
+                    <input type="email" placeholder="Email" style="border-bottom: 1px solid #ededed;" ng-model="customer.email">
+
+                </md-input-container>
+
+
+                <md-input-container md-no-float="">
+                    <input  type="number"  placeholder="Mobile" style="border-bottom: 1px solid #ededed;" ng-model="customer.mobile">
+                </md-input-container>
+                <md-input-container md-no-float="">
+                    <input type="text" placeholder="Message" style="border-bottom: 1px solid #ededed;" ng-model="customer.message">
+
+                </md-input-container>
+
+                <div class="contact-btn" ng-click="contact_zolo()">
+                    <p>Submit</p>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>

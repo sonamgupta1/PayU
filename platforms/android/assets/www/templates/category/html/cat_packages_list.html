@@ -1,0 +1,75 @@
+<style>
+
+    .title-left{
+        text-align: center!important;
+        text-transform: uppercase!important;
+    }
+
+</style>
+
+
+<ion-view>
+    <ion-nav-title>{{packages_list.name | uppercase}}</ion-nav-title>
+    <ion-nav-bar class="header_color">
+        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="back_to_sub_cat_side()"  tabindex="0" style="margin-left: -15px; color: #fff!important;">
+            <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
+            <span class="back-text"></span></button>
+    </ion-nav-bar>
+
+    <ion-content class="bg-c">
+        <div class="card m-5 p-10 text-center" ng-show="((packages.length =='0')&& (home_button == false))" style="max-height: 110px;">
+            <p class="text-center f-18">No Packages found</p>
+            <a class="back-t-z" ng-click="back_to_search()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to search result</a>
+        </div>
+        <div ng-show="((packages.length =='0')&& (home_button == true))">
+            <div class="card m-5 p-10 text-center"  style="max-height: 110px;">
+            </div>
+            <p class="text-center f-18">No Packages found</p>
+
+            <div class="text-center">
+                <a class="back-t-z" ng-click="back_to_home()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to home</a>
+            </div>
+        </div>
+
+        <div>
+        </div>
+        <div class="card m-5 zolo_card" ng-show="packages.length !='0'" ng-repeat="package in packages">
+            <div class="row" ng-click="catProductDescription(packages_list.parent_id,packages_list.id,package.id)">
+                <div class="col-33" id="image_display_1">
+                    <img width="100%" height="100" ng-if="package.first_photo != null" src="{{package.first_photo}}" class="pkg-img" ng-cloak>
+                    <img width="100%" height="100" ng-if="package.first_photo == null"  src="../img/noimagefound.png" class="pkg-img">
+                </div>
+                <div class="col-67" id="text_size">
+                    <div class="w-500 p-r-10 p-l-10 m-b-0" style="height: 30px; line-height: 18px;">{{package.name | limitTo: 40| capitalizeFirst}}..</div>
+                    <div class="text-c p-r-10 p-l-10 f-12 m-t-5">{{package.seller_name}}</div>
+                    <div class="row">
+                        <div class="col-67">
+                            <div class="text-c  m-b-0"><i class="fa fa-star review-c"></i>&nbsp;{{package.average_rating}}/5
+                                <!--<span class="text-c f-12">(0 Reviews)</span>-->
+                            </div>
+
+                            <div class=" m-b-0">&nbsp;<i class="fa fa-map-marker text-c">&nbsp;{{package.location[0].text}}, {{package.location[1].text}} </i>
+                            </div>
+                        </div>
+
+                        <div class="col-33 text-right">
+                            <div class="zolo-c f-14  w-500">&nbsp;{{package.deal_price| currency:"&#8377;":0}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="button f-18 w-500" ng-if="(packages.length > 10 || packages.length ==10) && disable_loadMore != true"
+                ng-click="load_more()" style="width: 100%; color: #565a5c; border: 1px solid #aaa;">Load more</button>
+        <button class="button f-18 w-500" ng-if="disable_loadMore == true" ng-disabled='true' style="width: 100%; color: #565a5c; border: 1px solid #aaa;">No more packages</button>
+
+    </ion-content>
+    <!--<div class="footer-fab-bar" ng-if="packages.length >'0'">-->
+    <div class="footer-fab-bar">
+        <a class="md-button md-accent md-fab fab-footer pkg-filter" ng-click="openSortAndFilterModal()"
+           aria-label="Add" tabindex="0">
+            <i class="fa fa-filter"></i>
+        </a>
+    </div>
+</ion-view>

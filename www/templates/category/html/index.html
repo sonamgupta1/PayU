@@ -1,0 +1,43 @@
+<style>
+    .title-left{
+        text-align: center!important;
+
+    }
+
+    .platform-android .bar .title{
+        margin-right: 55px;
+    }
+</style>
+
+<ion-view title="Category">
+    <ion-content id="restaurant">
+        <ion-slide-box id="restaurant-slide-box" show-pager="false" active-slide="0">
+
+            <ion-slide style="padding-top: 0px !important;" ng-repeat="category in categories" ng-if="category.parent_id == null">
+                <img ng-src="{{category.image}}" width="100%;">
+            </ion-slide>
+        </ion-slide-box>
+        <ion-list>
+            <ion-item class="p-0" ng-repeat="category in categories"  ng-click="allSubcategory(category.id)" ng-if="category.id != 13 && category.parent_id == null">
+                <a class="item">
+                    <i ng-if="category.name =='Business'"  class="fa fa-briefcase"></i>
+                    <i ng-if="category.name =='Digital'" class="fa fa-laptop"></i>
+                    <i ng-if="category.name =='Creative'" class="fa fa-picture-o"></i>
+                    <i ng-if="category.name =='Consultation'" style="font-size: 25px;" class="icon ion-ios-person-outline"></i>
+                    <i ng-if="category.name =='Classes'" class="fa fa-pencil-square-o"></i>
+                    <i ng-if="category.name =='Events'" class="fa fa-calendar"></i>
+                    <i ng-if="category.name =='Products'" style="font-size: 20px;" class="icon ion-bag"></i>
+                    <i ng-if="category.name =='Gifts'" class="fa fa-gift"></i>
+                    <i ng-if="category.name =='Others'" class="fa fa-briefcase"></i>
+                    <i ng-if="category.name =='Wedding Special'" class="fa fa-venus-mars"></i>
+                    <i ng-if="category.name =='Summer Deals'" class="fa fa-ticket"></i>
+
+
+                    &nbsp; <span>{{category.name}}</span>
+                </a>
+
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+</ion-view>

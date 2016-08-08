@@ -1,0 +1,21 @@
+<ion-view title="Payment Info">
+    <ion-content>
+        <div class="card p-10 m-10-0">
+            <p class="text-center text-danger f-18">Payment failed <i class="fa fa-frown-o" aria-hidden="true"></i>
+            </p>
+            <div class=" text-center p-10" ng-if="flag_1 == 'true'">
+                <a class="" ng-click="try_again()"><i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                    Click here to try again</a>
+            </div>
+
+            <div class=" text-center p-10" ng-if="flag_2 == 'true'">
+                <a class="" ng-click="try_again_search()"><i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                    Click here to try again</a>
+            </div>
+            <div class=" text-center p-10" ng-if="flag_3 == 'true'">
+                <a class="" ng-click="try_again_cat()"><i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                   Click here to try again</a>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

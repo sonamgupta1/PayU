@@ -1,0 +1,84 @@
+<ion-view>
+    <ion-content>
+        <form name="sendParam" method="post" action="https://secure.payu.in/_payment">
+        <input type="hidden" name="key" value="zZDqoj" />
+        <input type="hidden" name="txnid" id="invoice_id" value="" />
+        <input type="hidden" name="amount" id="amount" value="" />
+        <input type="hidden" name="productinfo" id="trans_id" value="" />
+        <input type="hidden" name="firstname" id="buyer_name" value="" />
+        <input type="hidden" name="email" id="email" value="" />
+        <input type="hidden" name="phone" id="mobile" value="" />
+        <input type="hidden" name="salt" value="jxzmrx8L" />
+        <input type="hidden" name="surl" value="https://payu.herokuapp.com/success" />
+        <input type="hidden" name="Furl" value="https://payu.herokuapp.com/failure" />
+        <input type="hidden" name="Hash" id="sha_value" value="" />
+        <input type="hidden" name="service_provider" value="payu_paisa" /><br/>
+        <input type="submit" value="enter" style="position: absolute; left: -9999px"/>
+        </form >
+
+        <div style="text-align: center;">
+            <img id="image" name="image" src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/preloadergif.gif"  alt="Something went wrong.">
+        </div>
+
+        <!--<script>-->
+            <!--document.sendParam.submit();-->
+        <!--</script>-->
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        <script type="text/javascript">
+            window.onload = function() {
+                document.getElementById("image").src = 'https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/preloadergif.gif';
+            };
+            setTimeout(window.onload(), 3000);
+
+
+            function getParam(name)
+            {
+                name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+                var regexS = "[\\?&]"+name+"=([^&#]*)";
+                var regex = new RegExp( regexS );
+                var results = regex.exec(window.location.href);
+                if(results == null)
+                    return "";
+                else
+                    return results[1];
+            }
+            function getUrlData()
+            {
+                var trans_id = getParam("trans_id");
+                var invoice_id = getParam("invoice_id");
+                var sha_value = getParam("sha_value");
+                var amount = getParam("amount");
+                var buyer_name = getParam("buyer_name");
+                var email = getParam("email");
+                var mobile = getParam("mobile");
+
+                trans_id = decodeURI(trans_id);
+                invoice_id = decodeURI(invoice_id);
+                amount = decodeURI(amount);
+                 buyer_name = decodeURI(buyer_name);
+                email = decodeURI(email);
+                mobile = decodeURI(mobile);
+
+                 document.getElementById('trans_id').value = trans_id;
+                 document.getElementById('invoice_id').value = invoice_id;
+                 document.getElementById('sha_value').value = sha_value;
+                 document.getElementById('amount').value = amount;
+                 document.getElementById('buyer_name').value = buyer_name;
+                 document.getElementById('email').value = email;
+                 document.getElementById('mobile').value = mobile;
+//                console.log("trans_id",trans_id,invoice_id,sha_value,amount,buyer_name,email);
+            }
+            getUrlData()
+            $(document).bind('keydown', function(event) {
+                if (event.keyCode == 27) {
+                    // Prevent default (disable the back button behavior)
+                    event.preventDefault();
+                }
+            });
+
+            document.sendParam.submit();
+
+        </script>
+    </ion-content>
+</ion-view>
